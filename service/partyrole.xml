@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+<service verb="create" noun="PartyRole" type="entity-auto">
+<in-parameters>
+<auto-parameters include="all">
+</auto-parameters>
+</in-parameters>
+<out-parameters>
+<parameter name="partyId" />
+</out-parameters>
+</service>
+
+<!-- service for the Delete -->
+<!-- <service verb="delete" noun="PartyRole" type="entity-auto">
+<in-parameters>
+<auto-parameters include="all">
+</auto-parameters>
+</in-parameters>
+
+</service> -->
+
+<!-- Delete the Party Role -->
+<service verb="delete" noun="PartyRole">
+<in-parameters>
+<parameter name="partyId"></parameter>
+</in-parameters>
+<actions>
+<entity-find-one entity-name="PartyRole" value-field="datalist">
+<field-map field-name="partyId" from="context.partyId" />
+</entity-find-one>
+<if condition="datalist != null">
+<entity-delete value-field="datalist" />
+</if>
+</actions>
+</service>
+
+<!-- Service for get the partyrole -->
+<service verb="fetch" noun="PartyRole">
+<in-parameters>
+<parameter name="partyId" />
+</in-parameters>
+<out-parameters>
+<parameter name="datalist" />
+</out-parameters>
+<actions>
+<entity-find entity-name="PartyRole" list="datalist">
+<econdition field-name="partyId" from="context.partyId"/>
+</entity-find>
+
+</actions>
+
+</service>
+
+
+
+</services>

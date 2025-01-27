@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+    <!-- Service for create the telecomnumber -->
+    <service verb="create" noun="TelecomNumber">
+        <in-parameters>
+            <auto-parameters include="nonpk" />
+        </in-parameters>
+        <out-parameters>
+            <parameter name="datalist" />
+        </out-parameters>
+
+        <actions>
+            <entity-make-value entity-name="TelecomNumber" value-field="datalist" />
+            <entity-sequenced-id-primary value-field="datalist" />
+            <entity-set value-field="datalist" include="all" />
+            <entity-create value-field="datalist" />
+
+        </actions>
+
+    </service>
+
+    <!-- Service for delete telecomnumber -->
+    <service verb="delete" noun="TelecomNumber">
+        <in-parameters>
+            <parameter name="telecomnumberId" />
+        </in-parameters>
+        <actions>
+            <entity-find-one entity-name="TelecomNumber" value-field="datalist">
+            </entity-find-one>
+            <if condition="datalist != null">
+                <entity-delete value-field="datalist" />
+
+            </if>
+
+        </actions>
+    </service>
+    <!-- service for update telecomnumber -->
+    <service verb="store" noun="TelecomNumber">
+        <in-parameters>
+            <parameter name="telecomnumberId" />
+            <auto-parameters include="nonpk" />
+        </in-parameters>
+        <actions>
+            <entity-find-one entity-name="TelecomNumber" value-field="datalist">
+            </entity-find-one>
+            <if condition="datalist != null">
+                <entity-set value-field="datalist" include="all" />
+                <entity-update value-field="datalist" />
+            </if>
+
+        </actions>
+
+    </service>
+
+    <!-- Service for the get data -->
+    <service verb="fetch" noun="TelecomNumber">
+    <in-parameters>
+    <parameter name="telecomnumberId" />
+    </in-parameters>
+    <out-parameters>
+    <parameter name="datalist" />
+    </out-parameters>
+    <actions>
+    <entity-find entity-name="TelecomNumber" list="datalist">
+    <econdition field-name="telecomnumberId" from="context.telecomnumberId" ignore-if-empty="true" />
+    </entity-find>
+   
+    
+    </actions>
+    
+    </service>
+
+</services>

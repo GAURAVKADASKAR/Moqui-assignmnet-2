@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+
+    <!-- Service for create postal Address -->
+    <service verb="create" noun="PostalAddress">
+        <in-parameters>
+            <auto-parameters include="nonpk" />
+        </in-parameters>
+        <out-parameters>
+            <parameter name="postaladdressId" />
+        </out-parameters>
+        <actions>
+            <entity-make-value entity-name="PostalAddress" value-field="datalist" />
+            <entity-sequenced-id-primary value-field="datalist" />
+            <entity-set value-field="datalist" include="all" />
+            <entity-create value-field="datalist" />
+        </actions>
+    </service>
+
+    <!-- Service for delete postalAddress -->
+    <service verb="delete" noun="PostalAddress">
+        <in-parameters>
+            <parameter name="postaladdressId" />
+        </in-parameters>
+        <actions>
+            <entity-find-one entity-name="PostalAddress" value-field="data">
+            </entity-find-one>
+            <entity-delete value-field="data" />
+        </actions>
+    </service>
+
+    <!-- Service for Update Postal Address -->
+    <service verb="store" noun="PostalAddress">
+        <in-parameters>
+            <parameter name="postaladdressId" />
+            <auto-parameters include="nonpk" />
+        </in-parameters>
+        <out-parameters>
+            <parameter name="datalist" />
+        </out-parameters>
+        <actions>
+            <entity-find-one entity-name="PostalAddress" value-field="datalist">
+            </entity-find-one>
+            <if condition="datalist != null">
+                <entity-set value-field="datalist" include="all" />
+                <entity-update value-field="datalist" />
+            </if>
+
+        </actions>
+
+    </service>
+
+    <!-- Service for get Postal Address -->
+    <service verb="fetch" noun="PostalAddress">
+        <in-parameters>
+            <parameter name="postaladdressId" />
+        </in-parameters>
+        <out-parameters>
+            <parameter name="datalist" />
+        </out-parameters>
+        <actions>
+            <entity-find entity-name="PostalAddress" list="datalist">
+                <econdition field-name="postaladdressId" from="context.postaladdressId"
+                    ignore-if-empty="true" />
+            </entity-find>
+
+        </actions>
+    </service>
+</services>
+    

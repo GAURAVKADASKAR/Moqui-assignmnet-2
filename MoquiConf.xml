@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-2.1.xsd">
     <screen-facade>
         <screen location="component://webroot/screen/webroot/apps.xml">
-            <subscreens-item name="relationshipmgr" menu-title="Test screen" menu-index="99"
+            <subscreens-item name="relationshipmgr" menu-title="Service screen" menu-index="99"
                     location="component://relationshipmgr/screen/samplescreen.xml"/>
         </screen>
         

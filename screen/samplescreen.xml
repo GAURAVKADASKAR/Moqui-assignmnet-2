@@ -2,26 +2,33 @@
 <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd"
     require-authentication="anonymous-all">
-    <!-- transition -->
-            <transition name="createTutorial">
+    <!-- transition for the creation of party -->
+    <transition name="createTutorial">
     <service-call name="Entityservice.create#Party"/>
     <default-response url="."/>
     </transition>
 
+
+    <!-- transition for the Create party role -->
     <transition name="createPartyRole">
     <service-call name="partyrole.create#PartyRole"/>
     <default-response url="."/>
     </transition>
 
+    <!-- transition for the deletion of the Role -->
     <transition name="DeletePartyRole">
     <service-call name="partyrole.delete#PartyRole"/>
     <default-response url="."/>
     </transition>
 
+
+    <!-- Transition for delete the party -->
     <transition name="deleteparty">
     <service-call name="Entityservice.delete#Party"/>
     <default-response url="."/>
     </transition>
+
+
     <!-- Transition for the creation of the contact mech -->
     <transition name="CreateContactMech">
     <service-call name="Entitycontectmech.create#ContectMech"/>
@@ -57,75 +64,80 @@
     </transition>
 
 
-    <!-- service for the Postal Address creation -->
+    <!-- Transition for the Postal Address creation -->
     <transition name="Createpostaladdress">
     <service-call name="postaladdress.create#PostalAddress"/>
     <default-response url="."/>
     </transition>
 
-    <!-- Service for the postalcode deletion -->
+    <!-- Transition for the postalcode deletion -->
     <transition name="Deletepostaladdress">
     <service-call name="postaladdress.delete#PostalAddress"/>
     <default-response url="."/>
     </transition>
-    <!-- Service for the postalcode update -->
+
+    <!-- Transition for the postalcode update -->
     <transition name="Updatepostaladdress">
     <service-call name="postaladdress.store#PostalAddress"/>
     <default-response url="."/>
     </transition>
 
-    <!-- service for the Postal Address creation -->
+    <!-- Transition for the Postal Address creation -->
     <transition name="Createtelecomnumber">
     <service-call name="telecomnumberservice.create#TelecomNumber"/>
     <default-response url="."/>
     </transition>
 
-    <!-- Service for the postalcode deletion -->
+    <!-- Transition for the postalcode deletion -->
     <transition name="Deletetelecomnumber">
     <service-call name="telecomnumberservice.delete#TelecomNumber"/>
     <default-response url="."/>
     </transition>
-    <!-- Service for the postalcode update -->
+    <!-- Transition for the postalcode update -->
     <transition name="Updatetelecomnumber">
     <service-call name="telecomnumberservice.fetch#TelecomNumber"/>
     <default-response url="."/>
     </transition>
 
 
-    <!-- service for the Person creation -->
+    <!-- Transition for the Person creation -->
     <transition name="Createperson">
     <service-call name="personservice.create#Person"/>
     <default-response url="."/>
     </transition>
 
-    <!-- Service for the Person deletion -->
+    <!-- Transition for the Person deletion -->
     <transition name="DeletePerson">
     <service-call name="personservice.delete#Person"/>
     <default-response url="."/>
     </transition>
-    <!-- Service for the Person update -->
+
+    <!-- Transition for the Person update -->
     <transition name="UpdatePerson">
     <service-call name="personservice.store#Person"/>
     <default-response url="."/>
     </transition>
 
 
-    <!-- service for the Organization creation -->
+    <!-- Transition for the Organization creation -->
     <transition name="CreateOrganizationn">
     <service-call name="organizationservice.create#Organization"/>
     <default-response url="."/>
     </transition>
 
-    <!-- Service for the Organization deletion -->
+    <!-- Transition for the Organization deletion -->
     <transition name="DeleteOrganization">
     <service-call name="organizationservice.delete#Organization"/>
     <default-response url="."/>
     </transition>
-    <!-- Service for the Organization update -->
+
+    <!-- Transition for the Organization update -->
     <transition name="UpdateOrganization">
     <service-call name="organizationservice.store#Organization"/>
     <default-response url="."/>
     </transition>
+
+
     <!-- wigets -->
         <widgets>
         <!-- For the creation of postalcode -->
@@ -137,8 +149,8 @@
         </field>
         </form-single>
         </container-dialog>
+
         <!-- For the deletion of postal address -->
-        
         <container-dialog id="deletepostal" button-text="Delete postaladdress">
             <form-single name="Deletepostaladdress" transition="Deletepostaladdress">
             <auto-fields-entity entity-name="PostalAddress" field-type="edit"/>

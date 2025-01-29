@@ -5,7 +5,7 @@
 
 
     <!-- Entity for Party Type -->
-    <entity entity-name="PartyType" package="Moqui.assignment2">
+    <entity entity-name="PartyType" package="Moqui.Party">
         <field name="partyTypeId" type="text-medium" is-pk="true" />
         <field name="description" type="text-long" />
         <relationship type="one-nofk" related="Party">
@@ -14,7 +14,7 @@
 
 
     <!-- Entity for the party -->
-    <entity entity-name="Party" package="Moqui.assignment2">
+    <entity entity-name="Party" package="Moqui.Party">
         <field name="partyId" type="id" is-pk="true" />
         <field name="partyTypeId" type="text-medium" />
         <relationship type="one-nofk" related="Person"></relationship>
@@ -40,7 +40,7 @@
 
 
     <!-- Entity for the Person -->
-    <entity entity-name="Person" package="Moqui.assignment2">
+    <entity entity-name="Person" package="Moqui.Party">
         <field name="partyId" type="id" is-pk="true" />
         <field name="firstName" type="text-medium" />
         <field name="lastName" type="text-medium" />
@@ -51,7 +51,7 @@
     </entity>
 
     <!-- Entity for the Organization  -->
-    <entity entity-name="Organization" package="Moqui.assignment2">
+    <entity entity-name="Organization" package="Moqui.Party">
         <field name="partyId" type="id" is-pk="true" />
         <field name="organizationName" type="text-medium" />
         <relationship type="one" related="Party">
@@ -60,14 +60,14 @@
     </entity>
 
     <!-- Entity for the Party Role -->
-    <entity entity-name="PartyRole" package="Moqui.assignment2">
+    <entity entity-name="PartyRole" package="Moqui.Party">
         <field name="partyId" type="id" is-pk="true" />
         <field name="partytypenumId" type="text-medium" />
         <relationship type="many" related="Party">
             <key-map field-name="partyId" related="partyId" />
         </relationship>
-        <relationship type="one" related="Enumeration">
-            <key-map field-name="partytypenumId" />
+        <relationship type="one" title="Roel" related="Enumeration">
+            <key-map field-name="partytypenumId" related="enumId"/>
         </relationship>
 
         <seed-data>
@@ -87,11 +87,11 @@
     </entity>
 
     <!-- Entity for the contect Mech -->
-    <entity entity-name="ContectMech" package="Moqui.assignment2">
+    <entity entity-name="ContectMech" package="Moqui.Party">
         <field name="contactMechId" type="id" is-pk="true" />
         <field name="contactMechTypeEnumId" type="text-medium" />
         <relationship type="one" related="Enumeration">
-            <key-map field-name="contactMechTypeEnumId"/>
+            <key-map field-name="contactMechTypeEnumId" />
         </relationship>
 
         <seed-data>
@@ -108,20 +108,18 @@
     </entity>
 
 
-
-
     <!-- Entity Contect Mech  -->
-    <entity entity-name="PartyContectMech" package="Moqui.assignment2">
+    <entity entity-name="PartyContectMech" package="Moqui.Party">
         <field name="partyId" type="id" is-pk="true" />
         <field name="contactMechId" type="id" />
         <field name="contactMechPurposeId" type="text-medium" />
         <field name="fromDate" type="date" />
-  
+
         <relationship type="one" related="ContectMech">
             <key-map field-name="contactMechId" related="contactMechId" />
         </relationship>
         <relationship type="one" related="Party">
-        <key-map field-name="partyId" related="partyId" />
+            <key-map field-name="partyId" related="partyId" />
         </relationship>
 
         <relationship type="one" related="Enumeration">
@@ -141,7 +139,7 @@
     </entity>
 
     <!-- Entity for the postal address -->
-    <entity entity-name="PostalAddress" package="Moqui.assignment2">
+    <entity entity-name="PostalAddress" package="Moqui.Party">
         <field name="contactMechId" type="id" />
         <field name="postaladdressId" type="id" is-pk="true" />
         <field name="toName" type="text-medium" />
@@ -154,8 +152,10 @@
             <key-map field-name="contactMechId" related="contactMechId" />
         </relationship>
     </entity>
+
+
     <!-- Entity for the TelecomNumber -->
-    <entity entity-name="TelecomNumber" package="Moqui.assignment2">
+    <entity entity-name="TelecomNumber" package="Moqui.Party">
         <field name="contactMechId" type="id" />
         <field name="telecomnumberId" type="id" is-pk="true" />
         <field name="countryCode" type="number-integer" />
@@ -165,8 +165,6 @@
             <key-map field-name="contactMechId" related="contactMechId" />
         </relationship>
     </entity>
-
-  
 
 
 </entities>

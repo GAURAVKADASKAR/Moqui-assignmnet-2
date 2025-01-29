@@ -10,22 +10,21 @@
         <out-parameters>
             <parameter name="datalist" />
         </out-parameters>
-
         <actions>
             <entity-find-one entity-name="Party" value-field="partydata">
-            <field-map field-name="partyId" from="context.partyId"/>
+                <field-map field-name="partyId" from="context.partyId" />
             </entity-find-one>
             <if condition="partydata!=null">
-            <if condition="partydata.partyTypeId == 'Organization'">
-            <entity-make-value entity-name="Organization" value-field="datalist" />
-            <entity-set value-field="datalist" include="all" />
-            <entity-create value-field="datalist" />
+                <if condition="partydata.partyTypeId == 'Organization'">
+                    <entity-make-value entity-name="Organization" value-field="datalist" />
+                        <entity-set value-field="datalist" include="all" />
+                    <entity-create value-field="datalist" />
+                    <else>
+                        <message>Party is Not a Organization Type</message>
+                    </else>
+                </if>
             <else>
-            <message>Party is Not a Organization Type</message>
-            </else>
-            </if>
-            <else>
-            <message>Data is null</message>
+                <message>Data is null</message>
             </else>
             </if>
         </actions>
@@ -42,11 +41,10 @@
             </entity-find-one>
             <if condition="datalist != null">
                 <entity-delete value-field="datalist" />
-
             </if>
-
         </actions>
     </service>
+
     <!-- service for update telecomnumber -->
     <service verb="store" noun="Organization">
         <in-parameters>
@@ -60,9 +58,7 @@
                 <entity-set value-field="datalist" include="all" />
                 <entity-update value-field="datalist" />
             </if>
-
         </actions>
-
     </service>
 
     <!-- Service for the get data -->
@@ -77,10 +73,6 @@
             <entity-find entity-name="Organization" list="datalist">
                 <econdition field-name="partyId" from="context.partyId" ignore-if-empty="true" />
             </entity-find>
-
-
         </actions>
-
     </service>
-
 </services>

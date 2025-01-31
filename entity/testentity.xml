@@ -66,7 +66,7 @@
         <relationship type="many" related="Party">
             <key-map field-name="partyId" related="partyId" />
         </relationship>
-        <relationship type="one" title="Roel" related="Enumeration">
+        <relationship type="one" title="RoleType" related="Enumeration">
             <key-map field-name="partytypenumId" related="enumId"/>
         </relationship>
 
